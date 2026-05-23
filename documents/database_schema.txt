@@ -1,0 +1,52 @@
+Enum event_type{
+  meeting
+  work
+  other
+}
+
+Enum roles{
+  worker
+  admin
+  hr
+  project_manager
+  team_lead
+  analyst
+}
+
+Table users {
+  id integer [primary key]
+  email varchar [not null, unique]
+  password varchar [note: 'hesh password', not null]
+  full_name varchar [not null, unique]
+  role roles [not null]
+  time_zone time [not null]
+}
+
+Table working_hours_plans {
+  id integer [primary key, not null]
+  user_id int [ref: > users.id, not null]
+  time_start timestamp [not null]
+  time_end timestamp [not null]
+  last_update date [not null]
+  type event_type
+}
+
+Table working_hours_facts{
+  id int [primary key, not null]
+  user_id int [ref: > users.id, not null]
+  time_start timestamp [not null]
+  time_end timestamp [not null]
+  description varchar
+  type event_type
+}
+
+Table teams{
+  id int [primary key, not null]
+  name varchar [unique]
+  description varchar
+}
+
+Table team_user{
+  id_user int [ref: > users.id, not null]
+  id_team int [ref: > teams.id, not null]
+}
