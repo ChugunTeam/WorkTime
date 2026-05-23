@@ -1,5 +1,5 @@
 from src.database import Base
-from sqlalchemy import Column, Integer, String, Enum as SqlEnum
+from sqlalchemy import Integer, String, Enum as SqlEnum
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from enum import Enum
 

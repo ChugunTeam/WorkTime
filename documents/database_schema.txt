@@ -1,4 +1,4 @@
-Enum event_type{
+Enum event_types{
   meeting
   work
   other
@@ -46,7 +46,7 @@ Table teams{
   description varchar
 }
 
-Table team_user{
-  id_user int [ref: > users.id, not null]
-  id_team int [ref: > teams.id, not null]
+Table teams_users{
+  user_id int [ref: > users.id, not null]
+  team_id int [ref: > teams.id, not null]
 }
