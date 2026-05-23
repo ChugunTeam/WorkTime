@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node.js / frontend
+node_modules/
+web/node_modules/
+web/dist/
+web/vite-dev*.log
+web/vite-dev*.err

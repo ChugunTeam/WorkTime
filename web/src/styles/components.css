@@ -1,0 +1,18 @@
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app-placeholder {
+  color: var(--app-muted);
+  text-align: center;
+}
+
+.app-placeholder h1 {
+  margin: 0;
+  color: var(--app-accent);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
