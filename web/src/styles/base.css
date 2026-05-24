@@ -10,3 +10,8 @@ body {
   color: var(--app-ink);
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
 }
+
+button,
+input {
+  font: inherit;
+}

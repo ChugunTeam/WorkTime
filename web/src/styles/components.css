@@ -1,18 +1,212 @@
-.app-shell {
+.app-layout {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  background: var(--app-bg);
 }
 
-.app-placeholder {
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--app-border);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.app-header-inner {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.app-logo {
+  border: 0;
+  background: transparent;
+  color: var(--app-ink);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.app-user-chip {
+  min-width: 0;
+  max-width: min(42vw, 24rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: var(--app-surface);
+  padding: 0.25rem 0.75rem 0.25rem 0.3rem;
+  box-shadow: 0 8px 20px rgba(30, 42, 54, 0.06);
+}
+
+.app-user-avatar {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--app-accent);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.app-user-name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--app-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-shell {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  padding-block: 2rem;
+}
+
+.wip-body {
+  width: min(100%, 46rem);
+  min-height: 18rem;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--app-border);
+  border-radius: var(--app-radius);
+  background: var(--app-surface);
+  box-shadow: var(--app-shadow);
   color: var(--app-muted);
   text-align: center;
 }
 
-.app-placeholder h1 {
+.wip-body h1 {
   margin: 0;
   color: var(--app-accent);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+.auth-page {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  width: min(100%, 420px);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.auth-card .card-body {
+  padding: 1.5rem;
+}
+
+.auth-card .card-title {
+  margin-bottom: 1.25rem;
+  color: var(--app-ink);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--app-accent);
+  --bs-btn-border-color: var(--app-accent);
+  --bs-btn-hover-bg: var(--app-accent-strong);
+  --bs-btn-hover-border-color: var(--app-accent-strong);
+  --bs-btn-active-bg: var(--app-accent-strong);
+  --bs-btn-active-border-color: var(--app-accent-strong);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--app-accent);
+  --bs-btn-border-color: var(--app-accent);
+  --bs-btn-hover-bg: var(--app-accent);
+  --bs-btn-hover-border-color: var(--app-accent);
+  --bs-btn-active-bg: var(--app-accent);
+  --bs-btn-active-border-color: var(--app-accent);
+}
+
+.btn-link {
+  --bs-btn-color: var(--app-accent);
+  --bs-btn-hover-color: var(--app-accent-strong);
+  text-decoration: none;
+}
+
+.form-control {
+  border-color: var(--app-border);
+  border-radius: var(--app-radius);
+}
+
+.form-control:focus {
+  border-color: color-mix(in srgb, var(--app-accent) 65%, white 35%);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--app-accent) 18%, transparent);
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.was-validated .form-control:invalid:focus,
+.form-control.is-invalid:focus {
+  border-color: var(--bs-form-invalid-border-color);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-danger-rgb), 0.18);
+}
+
+@media (max-width: 575px) {
+  .app-header-inner {
+    min-height: 58px;
+  }
+
+  .app-logo {
+    font-size: 1.1rem;
+  }
+
+  .app-header-actions {
+    gap: 0.35rem;
+  }
+
+  .app-user-chip {
+    max-width: 48vw;
+    padding-right: 0.55rem;
+  }
+
+  .app-user-name {
+    font-size: 0.86rem;
+  }
+
+  .auth-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .auth-actions .btn {
+    width: 100%;
+  }
 }
