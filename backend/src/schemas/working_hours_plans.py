@@ -6,17 +6,17 @@ from enum import Enum
 
 
 class EventType(str, Enum):
-    """ВИДЫ ВСТРЕЧЬ"""
+    """ТАБЛИЦА ПЛАНОВЫХ ЧАСОВ"""
 
     MEETING = "meeting"
     WORK = "work"
     OTHER = "other"
 
 
-class WorkingHoursFact(Base):
+class WorkingHoursPlan(Base):
     """ТАБЛИЦА КОМАНД"""
 
-    __tablename__ = "working_hours_facts"
+    __tablename__ = "working_hours_plans"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(
@@ -30,4 +30,7 @@ class WorkingHoursFact(Base):
     role: Mapped[EventType] = mapped_column(
         SqlEnum(EventType, native_enum=False), default=EventType.WORK, nullable=False
     )
-    # relationship
+    user: Mapped["User"] = relationship(
+        "User", 
+        back_populates="plans"
+    )

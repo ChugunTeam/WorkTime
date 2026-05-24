@@ -28,7 +28,7 @@ Table working_hours_plans {
   time_start timestamp [not null]
   time_end timestamp [not null]
   last_update date [not null]
-  type event_type
+  event_type event_type
 }
 
 Table working_hours_facts{

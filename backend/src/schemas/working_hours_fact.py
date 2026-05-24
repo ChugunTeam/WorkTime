@@ -6,7 +6,7 @@ from src.schemas.working_hours_plans import EventType
 
 
 class WorkingHoursFact(Base):
-    """ТАБЛИЦА КОМАНД"""
+    """ТАБЛИЦА ФАКТИЧЕСКИХ ЧАСОВ"""
 
     __tablename__ = "working_hours_facts"
 
@@ -21,4 +21,8 @@ class WorkingHoursFact(Base):
         SqlEnum(EventType, native_enum=False), default=EventType.WORK, nullable=False
     )
 
-    #working_hours_plans = relationship("User", back_populates = )
+    user: Mapped["User"] = relationship(
+        "User", 
+        back_populates="facts"
+    )
+    

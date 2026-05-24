@@ -2,6 +2,7 @@ from src.database import Base
 from sqlalchemy import Integer, String, Enum as SqlEnum
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from enum import Enum
+from typing import List
 
 
 class UserRole(str, Enum):
@@ -30,4 +31,21 @@ class User(Base):
     # Часовой пояс в формате смещения от UTC в часах
     time_zone: Mapped[int] = mapped_column(Integer, nullable=False)
 
-    #work_times = relationship("WorkTime", back_populates="user")
+    # 1. Связь с командами
+    teams: Mapped[List["Team"]] = relationship(
+        "Team", 
+        secondary="teams_users", 
+        back_populates="users"
+    )
+
+    # 2. Связь с фактическими часами (удаляются при удалении юзера)
+    facts: Mapped[List["WorkingHoursFact"]] = relationship(
+        "WorkingHoursFact", 
+        back_populates="user"
+    )
+
+    # 3. Связь с плановыми часами (удаляются при удалении юзера)
+    plans: Mapped[List["WorkingHoursPlan"]] = relationship(
+        "WorkingHoursPlan", 
+        back_populates="user"
+    )

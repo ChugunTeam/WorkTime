@@ -5,11 +5,11 @@ from enum import Enum
 
 
 class TeamUser(Base):
-    """ТАБЛИЦА КОМАНД"""
+    """ТАБЛИЦА СООТВЕТСТВИЙ ПОЛЬЗОВАТЕЛЕЙ К КОМАНДАМ"""
 
     __tablename__ = "teams_users"
 
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=False)
-    team_id: Mapped[int] = mapped_column(Integer, ForeignKey("teams.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=False, primary_key=True)
+    team_id: Mapped[int] = mapped_column(Integer, ForeignKey("teams.id"), nullable=False, primary_key=True)
 
     #relationship
